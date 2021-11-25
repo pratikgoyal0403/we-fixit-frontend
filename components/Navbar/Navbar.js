@@ -2,9 +2,9 @@ import Link from "next/link";
 
 export default function Navbar() {
 	return (
-		<div className="container bg-black py-3 flex items-center justify-around px-20">
+		<div className="container bg-transparent fixed py-3 flex items-center justify-between px-40">
 			<nav>
-				<a href="#" className="text-white">
+				<a href="#" className="text-white text-xl">
 					we fixit
 				</a>
 			</nav>
