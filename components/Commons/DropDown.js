@@ -15,7 +15,7 @@ export default function DropDown({ icon1 }) {
 				{showDropdown ? <AiOutlineCaretUp /> : <AiOutlineCaretDown />}
 			</div>
 			{showDropdown && (
-				<div className="absolute bg-white shadow-md rounded-xl py-2 px-4 w-full my-3 left-0">
+				<div className="absolute bg-white shadow-md rounded-xl py-2 px-4 w-full my-3 left-0 z-50">
 					<div>
 						<p className="p-2 hover:bg-gray-100 rounded-lg">
 							location 1

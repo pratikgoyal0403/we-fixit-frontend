@@ -1,8 +1,16 @@
-export default function Input(props) {
-	return (
-		<input
-			{...props}
-			className="w-full my-2 bg-gray-200 py-2 px-4 rounded focus:outline-none"
-		/>
-	);
+export default function Input({ Icon2, disabled,  ...props }) {
+	let disabledClass = '';
+	if(disabled) {
+		disabledClass = 'opacity-90 cursor-not-allowed';
+	}
+  return (
+    <div className={"bg-gray-200 w-full mb-3 pr-3 flex rounded items-center justify-between "+ disabledClass}>
+      <input
+        {...props}
+		disabled={disabled}
+        className="flex-1 w-full bg-transparent py-2 px-4 focus:outline-none"
+      />
+      {Icon2 && Icon2}
+    </div>
+  );
 }
