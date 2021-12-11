@@ -14,16 +14,16 @@ import Login from "../components/LoginComponent/Login";
 import Signup from "../components/SignupComponent/Signup.js";
 
 export default function Home() {
-  // const [showModal, setShowModal] = useState(false);
-  // const [modalComponent, setModalComponent] = useState("login");
-  // const displayModal = (component) => {
-  //   setShowModal(true);
-  //   setModalComponent(component);
-  // };
-  // const hideModal = () => setShowModal(false);
-  return (
-    <>
-      {/* {showModal && (
+	// const [showModal, setShowModal] = useState(false);
+	// const [modalComponent, setModalComponent] = useState("login");
+	// const displayModal = (component) => {
+	//   setShowModal(true);
+	//   setModalComponent(component);
+	// };
+	// const hideModal = () => setShowModal(false);
+	return (
+		<>
+			{/* {showModal && (
         <Backdrop hideModal={hideModal}>
           <Modal>
             {modalComponent === "login" && <Login hideModal={hideModal}/>}
@@ -31,12 +31,12 @@ export default function Home() {
           </Modal>
         </Backdrop>
       )} */}
-      <Header />
-      <ServicesInput />
+			<Header />
+			{/* <ServicesInput />
       <AllServices />
       <Features />
       <About />
-      <ContactUs />
-    </>
-  );
+      <ContactUs /> */}
+		</>
+	);
 }

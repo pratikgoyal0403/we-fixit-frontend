@@ -1,10 +1,8 @@
 export default function Features() {
 	return (
-		<div className="container flex items-center justify-center py-12 font-sans">
+		<div className="container mx-auto flex items-center justify-center py-12 font-sans">
 			<div className="mr-10">
-				<h1 className="text-4xl font-bold font-sans mb-5">
-					Why We Fixit?
-				</h1>
+				<h1 className="text-4xl font-bold font-sans mb-5">Why We Fixit?</h1>
 				<div className="flex items-center py-5">
 					<img
 						src="https://res.cloudinary.com/urbanclap/image/upload/q_40,f_auto/categories/category_v2/category_29614d40.png"
@@ -12,9 +10,7 @@ export default function Features() {
 						className="w-[80px] mr-6"
 					/>
 					<div>
-						<h1 className="font-semibold text-lg">
-							Transparent Pricing
-						</h1>
+						<h1 className="font-semibold text-lg">Transparent Pricing</h1>
 						<p className="text-gray-500 font-semibold text-sm">
 							See fixed prices before you book. No hidden charges.
 						</p>
@@ -41,9 +37,7 @@ export default function Features() {
 						className="w-[80px] mr-6"
 					/>
 					<div>
-						<h1 className="font-semibold text-lg">
-							Fully equipped
-						</h1>
+						<h1 className="font-semibold text-lg">Fully equipped</h1>
 						<p className="text-gray-500 font-semibold text-sm">
 							We bring everything needed to get the job done well.
 						</p>
