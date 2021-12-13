@@ -35,8 +35,8 @@ export default function Home() {
 			<ServicesInput />
 			<AllServices />
 			<Features />
-			{/*<About />
-      <ContactUs /> */}
+			<About />
+			<ContactUs />
 		</>
 	);
 }
