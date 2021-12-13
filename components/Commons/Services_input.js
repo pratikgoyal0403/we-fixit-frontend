@@ -5,7 +5,7 @@ export default function ServiceInput({ Icon1, className, ...props }) {
 			<input
 				{...props}
 				className={
-					"ml-1 w-full p-1.5 focus:outline-none flex-1 " + className
+					"ml-1 w-full px-1.5 py-2 focus:outline-none flex-1 " + className
 				}
 			/>
 		</div>

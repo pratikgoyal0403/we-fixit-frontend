@@ -32,9 +32,9 @@ export default function Home() {
         </Backdrop>
       )} */}
 			<Header />
-			{/* <ServicesInput />
-      <AllServices />
-      <Features />
+			<ServicesInput />
+			<AllServices />
+			{/* <Features />
       <About />
       <ContactUs /> */}
 		</>
