@@ -20,7 +20,7 @@ module.exports = {
       },
       gridTemplateColumns: {
         'admin-layout': '270px 1fr'
-      }
+      },
     },
   },
   fontFamily: {
