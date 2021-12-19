@@ -1,7 +1,11 @@
 import Link from "next/link";
 import ElevatedButton from "../Commons/Elevated_button";
+import { useSelector } from "react-redux";
+import { useRouter } from "next/router";
 
 export default function Navbar({ showModal }) {
+  const authDetails = useSelector((state) => state.auth);
+  const router = useRouter();
   return (
     <div className="container bg-transparent fixed py-3 flex items-center justify-between px-40">
       <nav>
@@ -11,13 +15,22 @@ export default function Navbar({ showModal }) {
       </nav>
       <nav>
         <ul className="flex items-center justify-center">
-          <li className="text-white mx-3">about</li>
-          <li
-            className="text-white mx-3 whitespace-nowrap cursor-pointer inline-flex items-center justify-center px-4 py-1 border border-transparent rounded-md shadow-sm text-base font-sm bg-primary"
-            onClick={() => showModal("login")}
-          >
-            Login / Signup
-          </li>
+          {authDetails?.isLoggedIn && (
+            <li
+              className="text-white mx-3"
+              onClick={() => router.push("/cart")}
+            >
+              cart
+            </li>
+          )}
+          {!authDetails?.isLoggedIn && (
+            <li
+              className="text-white mx-3 whitespace-nowrap cursor-pointer inline-flex items-center justify-center px-4 py-1 border border-transparent rounded-md shadow-sm text-base font-sm bg-primary"
+              onClick={() => showModal("login")}
+            >
+              Login / Signup
+            </li>
+          )}
         </ul>
       </nav>
     </div>
