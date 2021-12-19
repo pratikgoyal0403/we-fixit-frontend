@@ -1,3 +1,5 @@
+import Cookie from 'js-cookie';
+
 const key = "WE_FIXIT_AUTH_TOKEN";
 
 export const getToken = () => {
@@ -7,5 +9,6 @@ export const getToken = () => {
 
 export const setToken = (token) => {
   localStorage.setItem(key, token);
+  Cookie.set(key, token)
   return token;
 };

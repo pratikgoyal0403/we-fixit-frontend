@@ -1,21 +1,35 @@
 import ElevatedButton from "../Commons/Elevated_button";
 import LinkButton from "../Commons/Link_button";
-import {FiTrash2} from 'react-icons/fi'
+import { FiTrash2 } from "react-icons/fi";
+import { useDispatch } from "react-redux";
+import { deleteFromCart } from "../../store/actions/cartActions";
 
-export default function Cart_Card() {
+export default function Cart_Card({ _id: id, title, price }) {
+  const dispatch = useDispatch();
+  const deleteItem = () => {
+    dispatch(deleteFromCart({ serviceId: id }));
+  };
   return (
     <div className="w-auto rounded shadow-lg overflow-hidden mt-10">
       <div className="grid grid-cols-10">
         <div className="col-span-4">
-          <img src="/images/hero-2.webp" alt="service image" className="h-full"/>
+          <img
+            src="/images/hero-2.webp"
+            alt="service image"
+            className="h-full"
+          />
         </div>
         <div className="col-span-6 px-4">
-          <h1 className="text-gray-700 font-semibold mb-2">
-            Haircut + FREE 10 min Head Massage
-          </h1>
-          <p className="text-green-600 text-sm font-semibold py-1 mb-2">4.67 star</p>
-          <p className="font-semibold">₹249</p>
-          <ElevatedButton title={<FiTrash2 className="text-lg"/>} className="px-3 w-10 bg-red-500" />
+          <h1 className="text-gray-700 font-semibold mb-2">{title}</h1>
+          <p className="text-green-600 text-sm font-semibold py-1 mb-2">
+            4.67 star
+          </p>
+          <p className="font-semibold">₹{price}</p>
+          <ElevatedButton
+            title={<FiTrash2 className="text-lg" />}
+            className="px-3 w-10 bg-danger"
+            click={deleteItem}
+          />
         </div>
       </div>
       {/* <div className="px-8 py-2">
@@ -28,9 +42,7 @@ export default function Cart_Card() {
           </li>
         </ul>
       </div> */}
-      <div className="flex items-center justify-between px-4">
-        
-      </div>
+      <div className="flex items-center justify-between px-4"></div>
     </div>
   );
 }

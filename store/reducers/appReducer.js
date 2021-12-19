@@ -2,6 +2,8 @@ import * as types from "../types";
 
 const initialState = {
   allCategories: null,
+  services: null,
+  serviceDetails: null,
 };
 
 export default function AppReducer(state = initialState, action) {
@@ -10,6 +12,16 @@ export default function AppReducer(state = initialState, action) {
       return {
         ...state,
         allCategories: [...action.payload],
+      };
+    case types.SAVE_FETCHED_SERVICES:
+      return {
+        ...state,
+        services: [...action.payload],
+      };
+    case types.SAVE_FETCHED_SERVICE_DETAIL:
+      return {
+        ...state,
+        serviceDetails: { ...action.payload },
       };
     default:
       return {

@@ -1,34 +1,50 @@
 import ElevatedButton from "./Elevated_button";
 import LinkButton from "./Link_button";
+import { useRouter } from "next/router";
+import { useDispatch } from "react-redux";
+import { saveToCart } from "../../store/actions/cartActions";
 
-export default function ServiceInfoCard() {
+export default function ServiceInfoCard({ _id: id, title, price, features }) {
+  const router = useRouter();
+  const dispatch = useDispatch();
+  const addToCart = (e) => {
+    e.stopPropagation();
+    dispatch(saveToCart({ serviceId: id }));
+  };
+  const redirectToServiceDetails = (e) => {
+    router.replace("/service/" + id);
+    e.stopPropagation();
+  };
   return (
-    <div className="rounded shadow-lg overflow-hidden">
+    <div
+      className="rounded shadow-lg overflow-hidden"
+      onClick={redirectToServiceDetails}
+    >
       <div className="flex items-stretch justify-center flex-col lg:flex-row">
         <div className="flex-1">
-          <img src="/images/hero-2.webp" alt="service image"/>
+          <img src="/images/hero-2.webp" alt="service image" />
         </div>
         <div className="flex-2 px-4">
-          <h1 className="text-gray-700 font-semibold">
-            Haircut + FREE 10 min Head Massage
-          </h1>
+          <h1 className="text-gray-700 font-semibold">{title}</h1>
           <p className="text-green-600 text-sm font-semibold py-1">4.67 star</p>
-          <p className="font-semibold">₹249</p>
+          <p className="font-semibold">₹{price}</p>
           {/* <p className="text-sm text-gray-500 font-semibold">40 min</p> */}
         </div>
       </div>
       <div className="px-8 py-2">
         <ul className="list-disc">
-          <li className="text-gray-500 font-semibold text-sm mt-2">
-            HAIR CUT - Men's Haircut
-          </li>
-          <li className="text-gray-500 font-semibold text-sm mt-2">
-            HEAD MASSAGE - 10 min Head Massage
-          </li>
+          {features.map((feature) => (
+            <li
+              className="text-gray-500 font-semibold text-sm mt-2"
+              key={feature + feature.length}
+            >
+              {feature}
+            </li>
+          ))}
         </ul>
       </div>
       <div className="flex items-center justify-between px-4">
-        <ElevatedButton title="Add" className="px-10" />
+        <ElevatedButton title="Add" className="px-10" click={addToCart} />
         <LinkButton title="view details >" />
       </div>
     </div>

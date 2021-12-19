@@ -17,9 +17,9 @@ export const requestForOtp = (payload) => async (dispatch) => {
       console.log(response);
       return;
     }
-    console.log(response);
+    // console.log(response);
     const result = await response.data;
-    console.log(result.hash);
+    // console.log(result.hash);
     dispatch(saveHash(result.hash));
   } catch (err) {
     console.log(err);
@@ -36,7 +36,7 @@ const saveUserInfo = (payload) => {
 export const autoLogin = () => async (dispatch) => {
   try {
     const token = getToken();
-    console.log(token);
+    // console.log(token);
     const response = await Api.get("/user/auto-login", {
       headers: {
         "x-access-token": token,
@@ -48,7 +48,7 @@ export const autoLogin = () => async (dispatch) => {
       return;
     }
     const result = await response.data;
-    console.log(result);
+    // console.log(result);
     dispatch(saveUserInfo(result.response));
   } catch (err) {
     console.log(err);
@@ -63,9 +63,9 @@ export const login = (payload) => async (dispatch) => {
       console.log(response);
       return;
     }
-    console.log(response);
+    // console.log(response);
     const result = await response.data;
-    console.log(result);
+    // console.log(result);
     setToken(result.token);
     dispatch(saveUserInfo(result.user));
   } catch (err) {

@@ -2,8 +2,20 @@ import ElevatedButton from "../../components/Commons/Elevated_button";
 import SectionHeading from "../../components/Commons/Section_heading";
 import CreateReview from "../../components/ReviewBox/Create";
 import ReviewBox from "../../components/ReviewBox/ReviewBox";
+import { fetchServiceDetails } from "../../store/actions/appActions";
+import { saveToCart } from "../../store/actions/cartActions";
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect } from "react";
 
-export default function ProductDetailsPage() {
+export default function ProductDetailsPage({ id }) {
+  const service = useSelector((state) => state.app.serviceDetails);
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(fetchServiceDetails(id));
+  }, []);
+  const addToCart = () => {
+    dispatch(saveToCart({ serviceId: id }));
+  };
   return (
     <div className="py-16">
       {/* <SectionHeading title="XYZ Product"/> */}
@@ -14,20 +26,25 @@ export default function ProductDetailsPage() {
           </div>
           <div className="flex-1 px-6">
             <h1 className="text-4xl text-gray-700 font-semibold mb-4">
-              product heading
+              {service?.title}
             </h1>
             <p className="mb-4 text-yellow-500">4.27 stars</p>
 
             <ul className="my-5 list-disc px-5">
-              <li className="text-gray-500">HAIR CUT - Men's Haircut</li>
-              <li className="text-gray-500">
-                HEAD MASSAGE - 10 min Head Massage
-              </li>
-              <li className="text-gray-500">HAIR CUT - Men's Haircut</li>
+              {service &&
+                service.features.map((f, index) => (
+                  <li key={f + index} className="text-gray-500">
+                    {f}
+                  </li>
+                ))}
             </ul>
-            <p className="font-semibold text-lg">₹239</p>
+            <p className="font-semibold text-lg">₹{service?.price}</p>
             <div>
-              <ElevatedButton title="add" className="w-32 mt-8" />
+              <ElevatedButton
+                title="add"
+                className="w-32 mt-8"
+                click={addToCart}
+              />
             </div>
           </div>
         </div>
@@ -39,10 +56,14 @@ export default function ProductDetailsPage() {
             <ReviewBox />
           </div>
           <div className="flex-1">
-            <CreateReview className="col-span-4"/>
+            <CreateReview className="col-span-4" />
           </div>
         </div>
       </div>
     </div>
   );
+}
+
+export function getServerSideProps(context) {
+  return { props: { id: context.params.id } };
 }
