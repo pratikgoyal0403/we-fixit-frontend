@@ -1,6 +1,7 @@
 import * as types from "../types";
 import { getToken } from "../../utils/token-handler";
 import Api from "../../utils/Api";
+import { toast } from "react-toastify";
 
 const saveUserCart = (payload) => {
   return {
@@ -40,13 +41,16 @@ export const saveToCart = (payload) => async (dispatch) => {
     });
     if (response.status >= 400) {
       // error handling;
+      console.log("inside error handling");
       console.log(response);
       return;
     }
     const result = await response.data;
     console.log(result);
+    toast.success("service added to cart");
   } catch (err) {
     console.log(err);
+    toast.error("please login to add to cart");
   }
 };
 
@@ -64,6 +68,7 @@ export const deleteFromCart = (payload) => async (dispatch) => {
       return;
     }
     const result = await response.data;
+    toast.error("service removed from cart");
     dispatch(saveUserCart(result.response));
   } catch (err) {
     console.log(err);

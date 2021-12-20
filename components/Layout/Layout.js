@@ -6,6 +6,8 @@ import Header from "../Header/Header";
 import Login from "../LoginComponent/Login";
 import Navbar from "../Navbar/Navbar";
 import Signup from "../SignupComponent/Signup";
+import "react-toastify/dist/ReactToastify.css";
+import { ToastContainer } from "react-toastify";  
 
 export default function Layout({ navbar = true, children }) {
   const [showModal, setShowModal] = useState(false);
@@ -19,28 +21,43 @@ export default function Layout({ navbar = true, children }) {
     setModalComponent(component);
   };
   return (
-    <div className="min-h-screen grid grid-rows-layout">
-      {showModal && (
-        <Backdrop hideModal={hideModal}>
-          <Modal>
-            {modalComponent === "login" && (
-              <Login
-                hideModal={hideModal}
-                changeComponent={changeModalComponent}
-              />
-            )}
-            {/* {modalComponent === "signup" && (
+    <>
+      <ToastContainer
+        position="top-right"
+        autoClose={4000}
+        hideProgressBar
+        newestOnTop={true}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss={true}
+        draggable
+        pauseOnHover={true}
+        theme="colored"
+      />
+      <div className="min-h-screen grid grid-rows-layout">
+        {showModal && (
+          <Backdrop hideModal={hideModal}>
+            <Modal>
+              {modalComponent === "login" && (
+                <Login
+                  hideModal={hideModal}
+                  changeComponent={changeModalComponent}
+                />
+              )}
+              {/* {modalComponent === "signup" && (
               <Signup
                 hideModal={hideModal}
                 changeComponent={changeModalComponent}
               />
             )} */}
-          </Modal>
-        </Backdrop>
-      )}
-      {navbar && <Navbar showModal={displayModal} />}
-      {children}
-      {navbar && <Footer />}
-    </div>
+            </Modal>
+          </Backdrop>
+        )}
+
+        {navbar && <Navbar showModal={displayModal} />}
+        {children}
+        {navbar && <Footer />}
+      </div>
+    </>
   );
 }

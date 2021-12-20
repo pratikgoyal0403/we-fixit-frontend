@@ -12,28 +12,46 @@ import Backdrop from "../components/Commons/Backdrop.js";
 import Modal from "../components/Commons/Modal.js";
 import Login from "../components/LoginComponent/Login";
 import Signup from "../components/SignupComponent/Signup.js";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchCategories } from "../store/actions/appActions";
+import { useEffect } from "react";
+import Fuse from "fuse.js";
 
 export default function Home() {
-  // const [showModal, setShowModal] = useState(false);
-  // const [modalComponent, setModalComponent] = useState("login");
-  // const displayModal = (component) => {
-  //   setShowModal(true);
-  //   setModalComponent(component);
-  // };
-  // const hideModal = () => setShowModal(false);
+  const allCategories = useSelector((state) => state.app.allCategories);
+  const [search, setSearch] = useState("");
+  const [filteredCategories, setFilteredCategories] = useState(allCategories);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(fetchCategories());
+  }, []);
+  useEffect(() => {
+    if (!filteredCategories.length) {
+      setFilteredCategories(allCategories);
+    }
+  }, [allCategories]);
+
+  const filterResults = (e) => {
+    if (e.target.value === "") {
+      setSearch(e.target.value);
+      setFilteredCategories(allCategories);
+      return;
+    } 
+    let fuse = new Fuse(allCategories, { keys: ["title"] });
+    const result = fuse.search(e.target.value);
+    setSearch(e.target.value);
+    setFilteredCategories(result.map((r) => r.item));
+  };
+
   return (
     <>
-      {/* {showModal && (
-        <Backdrop hideModal={hideModal}>
-          <Modal>
-            {modalComponent === "login" && <Login hideModal={hideModal}/>}
-            {modalComponent === "signup" && <Signup />}
-          </Modal>
-        </Backdrop>
-      )} */}
       <Header />
-      <ServicesInput />
-      <AllServices />
+      <ServicesInput search={search} changeSearch={filterResults} />
+      <AllServices
+        categories={allCategories}
+        filteredResult={filteredCategories}
+      />
       <Features />
       <About />
       <ContactUs />
