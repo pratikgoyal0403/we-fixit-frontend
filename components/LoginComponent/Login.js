@@ -4,22 +4,17 @@ import ElevatedButton from "../Commons/Elevated_button";
 import Input from "../Commons/Input";
 import LinkButton from "../Commons/Link_button";
 import { useDispatch, useSelector } from "react-redux";
-import { requestForOtp, login } from "../../store/actions/authActions";
+import { login } from "../../store/actions/authActions";
 import Loader from "../Commons/Loader";
 
 export default function Login({ hideModal, changeComponent }) {
-  const [enableOtp, setEnableOtp] = useState(false);
-  const [phone, setPhone] = useState("");
-  const [otp, setOtp] = useState("");
-  const hash = useSelector((state) => state.auth.hash);
+  // const [password, setPassword] = useState(false);
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const dispatch = useDispatch();
-  const requestOtp = () => {
-
-    dispatch(requestForOtp({ phone }));
-  };
   const verifyUser = () => {
-    if (!hash || !otp || !phone) return alert("some data is not available");
-    dispatch(login({ phone, otp, hash }));
+    if (!email || !password) return alert("some data is not available");
+    dispatch(login({ email, password }));
   };
   return (
     <div>
@@ -34,30 +29,22 @@ export default function Login({ hideModal, changeComponent }) {
       </div>
       <div className="px-10 py-4 my-5">
         <Input
-          placeholder="phone number"
-          type="number"
-          value={phone}
-          onChange={(e) => setPhone(e.target.value)}
-          Icon2={
-            <p
-              className="text-primary font-semibold cursor-pointer"
-              onClick={requestOtp}
-            >
-              send OTP
-            </p>
-          }
+          placeholder="email"
+          type="email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
         />
         <Input
-          placeholder="OTP"
-          value={otp}
-          onChange={(e) => setOtp(e.target.value)}
-          disabled={!hash}
+          type="password"
+          placeholder="password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
         />
         <ElevatedButton title="Login" click={verifyUser} />
       </div>
-      {/* <div className="px-10 py-5">
+      <div className="px-10 py-5">
         <p className="text-center">
-          dont't have an account?{" "}
+          dont{"'"}t have an account?{" "}
           <span
             className="text-primary cursor-pointer"
             onClick={changeComponent.bind(this, "signup")}
@@ -65,7 +52,7 @@ export default function Login({ hideModal, changeComponent }) {
             signup
           </span>
         </p>
-      </div> */}
+      </div>
     </div>
   );
 }

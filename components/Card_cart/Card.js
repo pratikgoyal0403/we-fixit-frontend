@@ -27,7 +27,7 @@ export default function Cart_Card({ _id: id, title, price }) {
           <p className="font-semibold">₹{price}</p>
           <ElevatedButton
             title={<FiTrash2 className="text-lg" />}
-            className="px-3 w-10 bg-danger"
+            className=" px-3 w-10 !bg-danger"
             click={deleteItem}
           />
         </div>

@@ -3,6 +3,7 @@ import Link from "next/link";
 import ElevatedButton from "../Commons/Elevated_button";
 import { useSelector } from "react-redux";
 import { useRouter } from "next/router";
+import { deleteToken } from "../../utils/token-handler";
 
 export default function Navbar({ showModal }) {
   const [scrolledBeyond, setScrolledBeyond] = useState(false);
@@ -38,7 +39,11 @@ export default function Navbar({ showModal }) {
           href="#"
           className={"text-xl " + (scrolledBeyond ? " " : " text-white")}
         >
-          we fixit
+          <img
+            src={scrolledBeyond ? "./images/logo-acc.png" : "./images/logo.png"}
+            alt="we fixit"
+            style={{ width: "100px", height: "60px" }}
+          />
         </a>
       </nav>
       <nav>
@@ -76,7 +81,7 @@ export default function Navbar({ showModal }) {
                 className={
                   "text-white mx-3 whitespace-nowrap cursor-pointer inline-flex items-center justify-center px-4 py-1 border border-transparent rounded-md shadow-sm text-base font-sm bg-primary "
                 }
-                onClick={() => router.push("/cart")}
+                onClick={() => deleteToken()}
               >
                 Logout
               </li>

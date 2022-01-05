@@ -1,6 +1,7 @@
 import Api from "../../utils/Api";
 import { getToken } from "../../utils/token-handler";
 import * as types from "../types";
+import {toast} from 'react-toastify'
 
 const saveOrders = (payload) => {
   return {
@@ -53,6 +54,7 @@ export const postMyOrder = (payload) => async (dispatch) => {
     }
     const result = await response.data;
     dispatch(postOrder(result.response));
+    toast.success('Your Order has been placed');
   } catch (err) {
     console.log(err);
   }

@@ -17,7 +17,7 @@ export default function ProductDetailsPage({ id }) {
     dispatch(saveToCart({ serviceId: id }));
   };
   return (
-    <div className="py-16">
+    <div className="py-24">
       {/* <SectionHeading title="XYZ Product"/> */}
       <div className="container flex justify-center">
         <div className="w-10/12 flex items-stretch justify-start">

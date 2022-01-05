@@ -32,6 +32,7 @@ export default function Home() {
     }
   }, [allCategories]);
 
+
   const filterResults = (e) => {
     if (e.target.value === "") {
       setSearch(e.target.value);

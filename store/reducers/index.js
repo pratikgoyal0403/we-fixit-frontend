@@ -4,6 +4,7 @@ import AuthReducer from "./authReducer";
 import CartReducer from "./cartReducer";
 import OrderReducer from "./orderReducer";
 import UserReducer from "./userReducer";
+import AdminReducer from './adminReducer'
 
 export default combineReducers({
   auth: AuthReducer,
@@ -11,4 +12,5 @@ export default combineReducers({
   cart: CartReducer,
   order: OrderReducer,
   user: UserReducer,
+  admin: AdminReducer
 });

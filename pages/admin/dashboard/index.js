@@ -1,8 +1,15 @@
+import { useEffect } from "react";
 import AdminLayout from "../../../components/Admin/Layout/Layout";
 import DropDown from "../../../components/Commons/DropDown";
-
+import { useDispatch, useSelector } from "react-redux";
+import { fetchActiveOrders } from "../../../store/actions/adminAction";
 
 export default function Dashboard() {
+  const activeOrders = useSelector((state) => state.admin.activeOrders);
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(fetchActiveOrders());
+  }, []);
   return (
     <AdminLayout>
       <div className="px-10 py-6">
@@ -29,35 +36,36 @@ export default function Dashboard() {
             <p>Status</p>
             <p>Time</p>
           </div>
-          {[1, 2, 3, 4].map((e) => (
-            <div className="shadow-sm">
-              <div className="grid grid-cols-5 border-b text-center p-4 rounded mt-5 ">
-                <p className="cursor-pointer">jkl2343j2k4lj23kl4j234j</p>
-                <p>fictional steet, fictional city</p>
-                <p>₹249</p>
-                <p className="font-semibold">
-                  <DropDown />
-                </p>
-                <p>2:30pm</p>
-              </div>
-              {e === 1 && (
-                <div className="py-4">
-                  <div className="w-1/2 flex items-center justify-between pl-20 py-2">
-                    <p>Haircut + FREE 10 min Head Massage</p>
-                    <p>₹249</p>
-                  </div>
-                  <div className="w-1/2 flex items-center justify-between pl-20 py-2">
-                    <p>Haircut + FREE 10 min Head Massage</p>
-                    <p>₹249</p>
-                  </div>
-                  <div className="w-1/2 flex items-center justify-between pl-20 py-2">
-                    <p>Haircut + FREE 10 min Head Massage</p>
-                    <p>₹249</p>
-                  </div>
+          {activeOrders &&
+            activeOrders.map((order) => (
+              <div className="shadow-sm" key={order._id}>
+                <div className="grid grid-cols-5 border-b text-center p-4 rounded mt-5 ">
+                  <p className="cursor-pointer">jkl2343j2k4lj23kl4j234j</p>
+                  <p>fictional steet, fictional city</p>
+                  <p>₹249</p>
+                  <p className="font-semibold">
+                    <DropDown />
+                  </p>
+                  <p>2:30pm</p>
                 </div>
-              )}
-            </div>
-          ))}
+                {e === 1 && (
+                  <div className="py-4">
+                    <div className="w-1/2 flex items-center justify-between pl-20 py-2">
+                      <p>Haircut + FREE 10 min Head Massage</p>
+                      <p>₹249</p>
+                    </div>
+                    <div className="w-1/2 flex items-center justify-between pl-20 py-2">
+                      <p>Haircut + FREE 10 min Head Massage</p>
+                      <p>₹249</p>
+                    </div>
+                    <div className="w-1/2 flex items-center justify-between pl-20 py-2">
+                      <p>Haircut + FREE 10 min Head Massage</p>
+                      <p>₹249</p>
+                    </div>
+                  </div>
+                )}
+              </div>
+            ))}
         </div>
       </div>
     </AdminLayout>

@@ -11,6 +11,11 @@ export default function CartReducer(state = initialState, action) {
         ...state,
         cart: { ...action.payload },
       };
+    case types.SAVE_NEW_ORDER:
+      return {
+        ...state,
+        cart: null,
+      };
     default:
       return {
         ...state,

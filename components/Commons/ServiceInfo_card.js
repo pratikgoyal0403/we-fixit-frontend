@@ -20,11 +20,11 @@ export default function ServiceInfoCard({ _id: id, title, price, features }) {
       className="rounded shadow-lg overflow-hidden"
       onClick={redirectToServiceDetails}
     >
-      <div className="flex items-stretch justify-center flex-col lg:flex-row">
-        <div className="flex-1">
+      <div className="grid grid-cols-2">
+        <div className="">
           <img src="/images/hero-2.webp" alt="service image" />
         </div>
-        <div className="flex-2 px-4">
+        <div className=" px-4">
           <h1 className="text-gray-700 font-semibold">{title}</h1>
           <p className="text-green-600 text-sm font-semibold py-1">4.67 star</p>
           <p className="font-semibold">₹{price}</p>

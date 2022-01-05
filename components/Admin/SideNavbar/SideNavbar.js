@@ -11,7 +11,7 @@ export default function SideNavbar() {
     setCurrentPath(router.asPath);
   }, []);
   return (
-    <div className="bg-justWhite border-r px-4 flex justify-center flex-col">
+    <div className="bg-justWhite border-r px-4 flex justify-center flex-col max-h-screen">
       <h1 className="font-bold text-xl">we fixit</h1>
       <ul className="flex-1 flex flex-col items-stretch justify-center">
         <Link href="/admin/dashboard">
@@ -21,7 +21,19 @@ export default function SideNavbar() {
               (checkIfActive("/admin/dashboard") ? "bg-primary text-white" : "")
             }
           >
-            dashboard
+            Dashboard
+          </li>
+        </Link>
+        <Link href="/admin/categories">
+          <li
+            className={
+              "hover:bg-justPrimary pl-10 font-semibold text-lg py-3 rounded-lg mt-1 cursor-pointer " +
+              (checkIfActive("/admin/categories")
+                ? "bg-primary text-white"
+                : "")
+            }
+          >
+            Categories
           </li>
         </Link>
         <Link href="/admin/services">
@@ -31,7 +43,7 @@ export default function SideNavbar() {
               (checkIfActive("/admin/services") ? "bg-primary text-white" : "")
             }
           >
-            services
+            Services
           </li>
         </Link>
         <Link href="/admin/orders">
@@ -41,7 +53,7 @@ export default function SideNavbar() {
               (checkIfActive("/admin/orders") ? "bg-primary text-white" : "")
             }
           >
-            orders
+            Orders
           </li>
         </Link>
       </ul>

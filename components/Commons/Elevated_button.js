@@ -4,12 +4,14 @@ export default function ElevatedButton({
   title,
   className,
   click = () => {},
+  disabled = false,
 }) {
   return (
     <div
       className={
         "bg-primary flex items-center justify-center my-5 text-center text-white py-2 rounded shadow-xl cursor-pointer " +
-        className
+        className +
+        (disabled ? " opacity-50 cursor-not-allowed" : " ")
       }
       onClick={click}
     >

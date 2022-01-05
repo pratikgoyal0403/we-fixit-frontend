@@ -6,10 +6,15 @@ import { useEffect, useState } from "react";
 import { getCart } from "../../store/actions/cartActions";
 import { postMyOrder } from "../../store/actions/orderActions";
 import Input from "../../components/Commons/Input";
+import DropDown from "../../components/Commons/DropDown";
+import { useRouter } from "next/router";
 
 export default function Cart() {
   const [address, setAddress] = useState("");
   const [remarks, setRemarks] = useState("");
+  const [timestamp, setTimestamp] = useState("");
+  const [bookingDate, setBookingDate] = useState("");
+  const router = useRouter();
   const dispatch = useDispatch();
   const cartDetails = useSelector((state) => state.cart.cart);
 
@@ -17,11 +22,27 @@ export default function Cart() {
     dispatch(getCart());
   }, []);
 
+  const checkDisabled = () => {
+    if (!address || !timestamp) {
+      return true;
+    }
+    return false;
+  };
+
   const postOrder = () => {
-    dispatch(postMyOrder({ address, remarks, services: cartDetails.services }));
+    dispatch(
+      postMyOrder({
+        address,
+        remarks,
+        timestamp,
+        services: cartDetails.services,
+        bookingDate,
+      })
+    );
+    router.push("/orders");
   };
   return (
-    <div className="py-14">
+    <div className="py-24">
       <SectionHeading title="Cart" />
       <div className="w-10/12 mx-auto grid grid-cols-10">
         <div className="col-span-6">
@@ -60,7 +81,20 @@ export default function Cart() {
             </div>
             <hr className="mt-4" />
             <div className="my-2">
-              <p>Address: </p>
+              <p>Timestamp</p>
+              <DropDown
+                options={["Morning", "Noon", "Evening"]}
+                placeholder="Timestamp"
+                selectedValue={timestamp}
+                change={(value) => setTimestamp(value)}
+              />
+              <p>Date</p>
+              <Input
+                type="date"
+                value={bookingDate}
+                onChange={(e) => setBookingDate(e.target.value)}
+              />
+              <p className="mt-2">Address: </p>
               <Input
                 value={address}
                 onChange={(e) => setAddress(e.target.value)}
@@ -75,6 +109,7 @@ export default function Cart() {
               title="Checkout"
               className="shadow-none"
               click={postOrder}
+              disabled={checkDisabled()}
             />
           </div>
         </div>

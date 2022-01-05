@@ -1,37 +1,35 @@
-import { useEffect, useState } from "react";
-import { MdOutlineAdd, MdModeEdit } from "react-icons/md";
-import AdminLayout from "../../../components/Admin/Layout/Layout";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  addNewService,
-  fetchAllCategories,
-  fetchAllServices,
-  updateService,
-  deleteService,
-} from "../../../store/actions/adminAction";
-import ElevatedButton from "../../../components/Commons/Elevated_button";
 import ServiceCard from "../../../components/Admin/Commons/Service_Card";
+import AdminLayout from "../../../components/Admin/Layout/Layout";
 import SectionHeading from "../../../components/Commons/Section_heading";
+import { MdOutlineAdd, MdModeEdit } from "react-icons/md";
+import { useEffect, useState } from "react";
+import {
+  fetchAllCategories,
+  addNewCategory,
+  updateCategory,
+  deleteCategory,
+} from "../../../store/actions/adminAction";
 import Backdrop from "../../../components/Commons/Backdrop";
 import Modal from "../../../components/Commons/Modal";
 import ServiceForm from "../../../components/Admin/Commons/Service_Form";
+import CategoryForm from "../../../components/Admin/Commons/Category_Form";
 import ConfirmBox from "../../../components/Admin/Commons/Confirm_box";
 
-export default function Services() {
+export default function AdminCategories() {
   const [showModal, setShowModal] = useState(false);
   const [editId, setEditId] = useState(null);
   const [deleteId, setDeleteId] = useState(null);
-  const allServices = useSelector((state) => state.admin.services);
-
+  const allCategories = useSelector((state) => state.admin.categories);
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(fetchAllServices());
     dispatch(fetchAllCategories());
   }, []);
   const concealModal = () => setShowModal(true);
   const hideModal = () => {
     setShowModal(false);
     setEditId(null);
+    setDeleteId(null);
   };
   const editHandler = (id) => {
     setEditId(id);
@@ -41,21 +39,21 @@ export default function Services() {
     setDeleteId(id);
     concealModal();
   };
-  const submitHandler = (value) => {
+  const submitHandler = (values) => {
     const formData = new FormData();
-    for (let key in value) {
-      console.log(key, value[key]);
-      formData.append(key, value[key]);
+    for (let key in values) {
+      formData.append(key, values[key]);
     }
     if (editId) {
-      dispatch(updateService(editId, formData));
+      dispatch(updateCategory(editId, formData));
+      hideModal();
       return;
     }
-    dispatch(addNewService(formData));
+    dispatch(addNewCategory(formData));
     hideModal();
   };
   const yesHandler = () => {
-    dispatch(deleteService(deleteId));
+    dispatch(deleteCategory(deleteId));
     hideModal();
   };
   return (
@@ -64,9 +62,13 @@ export default function Services() {
         <Backdrop hideModal={hideModal}>
           <Modal>
             {deleteId ? (
-              <ConfirmBox hideModal={hideModal} onYes={yesHandler} />
+              <ConfirmBox
+                deleteId={deleteId}
+                hideModal={hideModal}
+                onYes={yesHandler}
+              />
             ) : (
-              <ServiceForm editId={editId} onSubmit={submitHandler} />
+              <CategoryForm editId={editId} onSubmit={submitHandler} />
             )}
           </Modal>
         </Backdrop>
@@ -83,10 +85,10 @@ export default function Services() {
           </div>
         </div>
         <div className="p-2">
-          <SectionHeading title="Services" />
+          <SectionHeading title="Categories" />
           <div className="px-2 py-2">
-            {allServices &&
-              allServices.map((service) => (
+            {allCategories &&
+              allCategories.map((service) => (
                 <ServiceCard
                   key={service._id}
                   onEdit={editHandler}

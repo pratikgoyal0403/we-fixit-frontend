@@ -24,7 +24,7 @@ export default function Layout({ navbar = true, children }) {
     <>
       <ToastContainer
         position="top-right"
-        autoClose={4000}
+        autoClose={3000}
         hideProgressBar
         newestOnTop={true}
         closeOnClick
@@ -44,12 +44,12 @@ export default function Layout({ navbar = true, children }) {
                   changeComponent={changeModalComponent}
                 />
               )}
-              {/* {modalComponent === "signup" && (
+              {modalComponent === "signup" && (
               <Signup
                 hideModal={hideModal}
                 changeComponent={changeModalComponent}
               />
-            )} */}
+            )}
             </Modal>
           </Backdrop>
         )}
