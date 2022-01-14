@@ -9,7 +9,7 @@ export default function Header() {
 					<h1 className="text-lg sm:text-xl md:text-2xl lg:text-3xl mb-3 sm:mb-4 md:mb-5 tracking-widest uppercase text-white">
 						We Fixit
 					</h1>
-					<h3 className="text-2xl xs:text-3xl sm:text-4xl lg:text-5xl mb-2 xs:mb-3 sm:mb-4 md:mb-5 font-semibold font-sans text-white capitalize">
+					<h3 className="text-2xl xs:text-3xl sm:text-4xl lg:text-5xl  mb-2 xs:mb-3 sm:mb-4 md:mb-5 font-semibold font-sans text-white capitalize">
 						Quality home services, on demand
 					</h3>
 					<p className="text-sm sm:text-lg md:text-lg lg:text-xl text-white">

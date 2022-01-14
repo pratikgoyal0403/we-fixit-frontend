@@ -1,8 +1,14 @@
+const defaultTheme = require("tailwindcss/defaultTheme");
+
 module.exports = {
 	mode: "jit",
 	purge: ["./pages/**/*.{js,ts,jsx,tsx}", "./components/**/*.{js,ts,jsx,tsx}"],
 	darkMode: false, // or 'media' or 'class'
 	theme: {
+		screens: {
+			xs: "480px",
+			...defaultTheme.screens,
+		},
 		extend: {
 			colors: {
 				primary: "#38CC77",
@@ -22,9 +28,6 @@ module.exports = {
 			},
 			gridTemplateColumns: {
 				"admin-layout": "270px 1fr",
-			},
-			screens: {
-				xs: "480px",
 			},
 		},
 	},
