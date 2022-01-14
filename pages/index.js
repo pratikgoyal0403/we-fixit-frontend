@@ -47,14 +47,14 @@ export default function Home() {
 	return (
 		<>
 			<Header />
-			<ServicesInput search={search} changeSearch={filterResults} />
+			{/* <ServicesInput search={search} changeSearch={filterResults} />
 			<AllServices
 				categories={allCategories}
 				filteredResult={filteredCategories}
 			/>
 			<Features />
 			<About />
-			<ContactUs />
+			<ContactUs /> */}
 		</>
 	);
 }
