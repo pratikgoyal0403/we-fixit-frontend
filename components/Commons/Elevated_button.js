@@ -16,9 +16,7 @@ export default function ElevatedButton({
 			onClick={click}
 		>
 			{!!Icon1 && Icon1}
-			<p className="text-xs sm:text-sm md:text-regular font-semibold">
-				{title}
-			</p>
+			<p className="text-sm md:text-regular font-semibold">{title}</p>
 			{!!Icon2 && Icon2}
 		</div>
 	);

@@ -47,14 +47,26 @@ export default function Home() {
 	return (
 		<>
 			<Header />
-			{/* <ServicesInput search={search} changeSearch={filterResults} />
+			<ServicesInput search={search} changeSearch={filterResults} />
 			<AllServices
 				categories={allCategories}
-				filteredResult={filteredCategories}
+				filteredResult={
+					[
+						{ _id: 1, title: "Salon for Men" },
+						{ _id: 2, title: "Salon for Women" },
+						{ _id: 3, title: "Plumber/Carpentar" },
+						{ _id: 5, title: "Salon for Women" },
+						{ _id: 4, title: "Salon for Men" },
+						{ _id: 7, title: "Salon for Men" },
+						{ _id: 8, title: "Salon for Women" },
+						{ _id: 6, title: "Plumber/Carpentar" },
+						{ _id: 9, title: "Plumber/Carpentar" },
+					] || filteredCategories
+				}
 			/>
 			<Features />
 			<About />
-			<ContactUs /> */}
+			<ContactUs />
 		</>
 	);
 }
