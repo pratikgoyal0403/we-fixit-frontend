@@ -1,8 +1,14 @@
 import React from "react";
 
-const Container = ({ className, children }) => {
+const Container = ({ responsive, className, children }) => {
 	return (
-		<div className={`container px-4 mx-auto ${className}`}>{children}</div>
+		<div
+			className={`${
+				responsive ? `${responsive}:` : ""
+			}container px-4 mx-auto ${className}`}
+		>
+			{children}
+		</div>
 	);
 };
 

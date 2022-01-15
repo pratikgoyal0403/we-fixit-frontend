@@ -30,8 +30,8 @@ export default function Navbar({ showModal }) {
 	return (
 		<div
 			className={
-				"w-full fixed py-3 flex items-center justify-between px-4 sm:px-6 md:px-16 lg:px-40 " +
-				(scrolledBeyond ? " bg-white shadow-lg" : " bg-transparent")
+				"w-full fixed z-50 md:py-3 flex items-center justify-between px-4 sm:px-6 md:px-16 lg:px-40 " +
+				(scrolledBeyond ? " bg-white shadow-md" : " bg-transparent")
 			}
 		>
 			<nav>
@@ -93,7 +93,7 @@ export default function Navbar({ showModal }) {
 					)}
 					{!authDetails?.isLoggedIn && (
 						<li
-							className="text-white md:mx-3 whitespace-nowrap cursor-pointer inline-flex items-center justify-center px-3 sm:px-4 py-1 border border-transparent rounded-md shadow-sm text-xs sm:text-sm md:text-base font-sm bg-primary"
+							className="text-white md:mx-3 whitespace-nowrap cursor-pointer inline-flex items-center justify-center px-3 sm:px-4 py-1 border border-transparent rounded-md shadow-sm text-sm md:text-base font-sm bg-primary"
 							onClick={() => showModal("login")}
 						>
 							Login / Signup
