@@ -23,7 +23,7 @@ export default function Cart() {
   }, []);
 
   const checkDisabled = () => {
-    if (!address || !timestamp) {
+    if (!address || !timestamp || !bookingDate) {
       return true;
     }
     return false;
@@ -88,7 +88,7 @@ export default function Cart() {
                 selectedValue={timestamp}
                 change={(value) => setTimestamp(value)}
               />
-              <p>Date</p>
+              <p className="mt-2">Date</p>
               <Input
                 type="date"
                 value={bookingDate}
@@ -108,7 +108,7 @@ export default function Cart() {
             <ElevatedButton
               title="Checkout"
               className="shadow-none"
-              click={postOrder}
+              click={checkDisabled() ? () => {} : postOrder}
               disabled={checkDisabled()}
             />
           </div>

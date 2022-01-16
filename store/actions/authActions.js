@@ -72,13 +72,13 @@ export const login = (payload) => async (dispatch) => {
   }
 };
 
-export const adminLogin = (payload) => async (dispatch) => {
+export const adminLogin = (payload, router) => async (dispatch) => {
   try {
     const response = await Api.post("/user/admin-login", payload);
     const result = await response.data;
-    console.log(result);
     setToken(result.token);
     dispatch(saveUserInfo(result.user));
+    router.push("/admin/dashboard");
   } catch (err) {
     toast.error(err.response.data.message);
     console.log(err);

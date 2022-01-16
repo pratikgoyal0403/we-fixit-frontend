@@ -4,6 +4,7 @@ const initialState = {
   services: [],
   categories: [],
   orders: [],
+  orderDetail: {},
 };
 
 export default function adminReducer(state = initialState, action) {
@@ -45,6 +46,19 @@ export default function adminReducer(state = initialState, action) {
       return {
         ...state,
         orders: [...action.payload],
+      };
+    case types.NEW_ORDER_STATUS:
+      const aOrders = [...state.activeOrder];
+      const index = aOrders.findIndex((o) => o._id === action.payload._id);
+      aOrders[index].status = action.payload.status;
+      return {
+        ...state,
+        activeOrder: [...aOrders],
+      };
+    case types.FETCH_ORDER_DETAIL:
+      return {
+        ...state,
+        orderDetail: { ...action.payload },
       };
     default:
       return {

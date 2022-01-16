@@ -52,11 +52,11 @@ export default function ProductDetailsPage({ id }) {
       <div className="my-14">
         <SectionHeading title="Reviews" />
         <div className="grid grid-cols-10">
-          <div className="col-span-6">
-            <ReviewBox />
+          <div className="col-span-5 flex items-center justify-center">
+            <ReviewBox reviews={service?.reviews} />
           </div>
-          <div className="flex-1">
-            <CreateReview className="col-span-4" />
+          <div className="col-span-5 flex items-center justify-center">
+            <CreateReview serviceId={id} />
           </div>
         </div>
       </div>

@@ -1,10 +1,10 @@
 import Review from "./Review";
 
-export default function ReviewBox() {
-    return <div className="w-1/2 mx-auto my-5">
-        <Review />
-        <Review />
-        <Review />
-        <Review />
+export default function ReviewBox({ reviews }) {
+  return (
+    <div className="w-3/4 my-5">
+      {reviews &&
+        reviews.map((review) => <Review key={review._id} {...review} />)}
     </div>
+  );
 }

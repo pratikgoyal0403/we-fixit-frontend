@@ -62,7 +62,7 @@ export default function Features() {
 							100% Quality Assured
 						</h1>
 						<p className="text-gray-500 text-sm my-2">
-							If you don't love our service, we will make it right.
+							If you don{"'"}t love our service, we will make it right.
 						</p>
 					</div>
 				</div>

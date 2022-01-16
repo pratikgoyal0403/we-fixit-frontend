@@ -2,10 +2,13 @@ import AdminLayout from "../../../components/Admin/Layout/Layout";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { fetchAllOrders } from "../../../store/actions/adminAction";
+import { useRouter } from "next/router";
 
 export default function Orders() {
   const orders = useSelector((state) => state.admin.orders);
   const dispatch = useDispatch();
+  const router = useRouter();
+
   useEffect(() => {
     dispatch(fetchAllOrders());
   }, []);
@@ -25,13 +28,11 @@ export default function Orders() {
                 "grid grid-cols-5 text-center shadow-sm p-4 rounded mt-5 "
               }
               key={o._id}
+              onClick={() => router.push("/admin/order/" + o._id)}
             >
               <p className="cursor-pointer">{o._id}</p>
               <p>{o.address}</p>
               <p>₹{o.grandTotal}</p>
-              {/* <p className="font-semibold text-yellow-500">
-              <DropDown />
-            </p> */}
               <p>2:30pm</p>
             </div>
           ))}

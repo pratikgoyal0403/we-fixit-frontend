@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
+import {useRouter} from 'next/router'
 import ElevatedButton from "../../components/Commons/Elevated_button";
 import Input from "../../components/Commons/Input";
 import SectionHeading from "../../components/Commons/Section_heading";
@@ -11,11 +12,12 @@ export default function AdminLogin() {
     password: "",
   });
   const dispatch = useDispatch();
+  const router = useRouter()
   const handleChange = (field, e) => {
     setValues((prevValue) => ({ ...prevValue, [field]: e.target.value }));
   };
   const submitHandler = () => {
-    dispatch(adminLogin(values));
+    dispatch(adminLogin(values, router));
   };
   return (
     <div className="flex items-center justify-center flex-col">

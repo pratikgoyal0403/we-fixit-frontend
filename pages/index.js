@@ -18,55 +18,43 @@ import { useEffect } from "react";
 import Fuse from "fuse.js";
 
 export default function Home() {
-	const allCategories = useSelector((state) => state.app.allCategories);
-	const [search, setSearch] = useState("");
-	const [filteredCategories, setFilteredCategories] = useState(allCategories);
-	const dispatch = useDispatch();
+  const allCategories = useSelector((state) => state.app.allCategories);
+  const [search, setSearch] = useState("");
+  const [filteredCategories, setFilteredCategories] = useState(allCategories);
+  const dispatch = useDispatch();
 
-	useEffect(() => {
-		dispatch(fetchCategories());
-	}, []);
-	useEffect(() => {
-		if (!filteredCategories.length) {
-			setFilteredCategories(allCategories);
-		}
-	}, [allCategories]);
+  useEffect(() => {
+    dispatch(fetchCategories());
+  }, []);
+  useEffect(() => {
+    if (!filteredCategories.length) {
+      setFilteredCategories(allCategories);
+    }
+  }, [allCategories]);
 
-	const filterResults = (e) => {
-		if (e.target.value === "") {
-			setSearch(e.target.value);
-			setFilteredCategories(allCategories);
-			return;
-		}
-		let fuse = new Fuse(allCategories, { keys: ["title"] });
-		const result = fuse.search(e.target.value);
-		setSearch(e.target.value);
-		setFilteredCategories(result.map((r) => r.item));
-	};
+  const filterResults = (e) => {
+    if (e.target.value === "") {
+      setSearch(e.target.value);
+      setFilteredCategories(allCategories);
+      return;
+    }
+    let fuse = new Fuse(allCategories, { keys: ["title"] });
+    const result = fuse.search(e.target.value);
+    setSearch(e.target.value);
+    setFilteredCategories(result.map((r) => r.item));
+  };
 
-	return (
-		<>
-			<Header />
-			<ServicesInput search={search} changeSearch={filterResults} />
-			<AllServices
-				categories={allCategories}
-				filteredResult={
-					[
-						{ _id: 1, title: "Salon for Men" },
-						{ _id: 2, title: "Salon for Women" },
-						{ _id: 3, title: "Plumber/Carpentar" },
-						{ _id: 5, title: "Salon for Women" },
-						{ _id: 4, title: "Salon for Men" },
-						{ _id: 7, title: "Salon for Men" },
-						{ _id: 8, title: "Salon for Women" },
-						{ _id: 6, title: "Plumber/Carpentar" },
-						{ _id: 9, title: "Plumber/Carpentar" },
-					] || filteredCategories
-				}
-			/>
-			<Features />
-			<About />
-			<ContactUs />
-		</>
-	);
+  return (
+    <>
+      <Header />
+      <ServicesInput search={search} changeSearch={filterResults} />
+      <AllServices
+        categories={allCategories}
+        filteredResult={filteredCategories}
+      />
+      <Features />
+      <About />
+      <ContactUs />
+    </>
+  );
 }

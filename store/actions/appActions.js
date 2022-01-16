@@ -1,4 +1,5 @@
 import Api from "../../utils/Api";
+import { getToken } from "../../utils/token-handler";
 import * as types from "../types";
 
 const saveCategories = (payload) => {
@@ -73,6 +74,21 @@ export const fetchServiceDetails = (serviceId) => async (dispatch) => {
 export const contactUs = (payload) => async (dispatch) => {
   try {
     const response = await Api.post("/contact-us");
+    const result = await response.data;
+    console.log(result);
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+export const postReview = (serviceId, payload) => async (dispatch) => {
+  try {
+    const token = getToken();
+    const response = await Api.post("/review/" + serviceId, payload, {
+      headers: {
+        "x-access-token": token,
+      },
+    });
     const result = await response.data;
     console.log(result);
   } catch (err) {

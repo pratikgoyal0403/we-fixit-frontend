@@ -25,6 +25,51 @@ export const fetchActiveOrders = () => async (dispatch) => {
   }
 };
 
+const saveNewOrderStatus = (payload) => {
+  return {
+    type: types.NEW_ORDER_STATUS,
+    payload,
+  };
+};
+
+export const changeOrderStatus = (id, payload) => async (dispatch) => {
+  try {
+    const token = getToken();
+    const response = await Api.put("/admin/order/" + id, payload, {
+      headers: {
+        "x-access-token": token,
+      },
+    });
+    const result = await response.data;
+    dispatch(saveNewOrderStatus(result.response));
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+const saveOrderDetail = (payload) => {
+  return {
+    type: types.FETCH_ORDER_DETAIL,
+    payload,
+  };
+};
+
+export const fetchOrderDetail = (id) => async (dispatch) => {
+  try {
+    const token = getToken();
+    const response = await Api.get("/admin/order/" + id, {
+      headers: {
+        "x-access-token": token,
+      },
+    });
+    const result = await response.data;
+    console.log(result);
+    dispatch(saveOrderDetail(result.response));
+  } catch (err) {
+    console.log(err);
+  }
+};
+
 const saveAllOrders = (payload) => {
   return {
     type: types.FETCH_ALL_ORDERS,

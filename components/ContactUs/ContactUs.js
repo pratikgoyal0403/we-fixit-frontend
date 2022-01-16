@@ -19,8 +19,7 @@ export default function ContactUs() {
 		dispatch(contactUs());
 	};
 	return (
-		<div className="">
-			<Container>
+			<Container className="xl:w-5/6">
 				<Heading title="Contact Us" />
 				<div className="my-10 rounded mx-auto grid md:grid-cols-2">
 					<div className="pr-16 mb-6 md:mb-0">
@@ -80,6 +79,5 @@ export default function ContactUs() {
 					</div>
 				</div>
 			</Container>
-		</div>
 	);
 }

@@ -2,14 +2,21 @@ import { useEffect } from "react";
 import AdminLayout from "../../../components/Admin/Layout/Layout";
 import DropDown from "../../../components/Commons/DropDown";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchActiveOrders } from "../../../store/actions/adminAction";
+import {
+  fetchActiveOrders,
+  changeOrderStatus,
+} from "../../../store/actions/adminAction";
 
 export default function Dashboard() {
-  const activeOrders = useSelector((state) => state.admin.activeOrders);
+  const activeOrders = useSelector((state) => state.admin.activeOrder);
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(fetchActiveOrders());
   }, []);
+  const statusChangeHandler = (oid, status) => {
+    console.log(oid, status);
+    dispatch(changeOrderStatus(oid, { status }));
+  };
   return (
     <AdminLayout>
       <div className="px-10 py-6">
@@ -44,26 +51,26 @@ export default function Dashboard() {
                   <p>fictional steet, fictional city</p>
                   <p>₹249</p>
                   <p className="font-semibold">
-                    <DropDown />
+                    <DropDown
+                      options={["Placed", "Confirmed", "Completed"]}
+                      selectedValue={order.status}
+                      change={(value) => statusChangeHandler(order._id, value)}
+                    />
                   </p>
                   <p>2:30pm</p>
                 </div>
-                {e === 1 && (
-                  <div className="py-4">
-                    <div className="w-1/2 flex items-center justify-between pl-20 py-2">
-                      <p>Haircut + FREE 10 min Head Massage</p>
-                      <p>₹249</p>
+                <div className="py-4">
+                  {order.services.map((service) => (
+                    <div
+                      className="w-1/2 flex items-center justify-between pl-20 py-2"
+                      key={service._id}
+                    >
+                      {console.log(service)}
+                      <p>{service.title}</p>
+                      <p>₹ {service.price}</p>
                     </div>
-                    <div className="w-1/2 flex items-center justify-between pl-20 py-2">
-                      <p>Haircut + FREE 10 min Head Massage</p>
-                      <p>₹249</p>
-                    </div>
-                    <div className="w-1/2 flex items-center justify-between pl-20 py-2">
-                      <p>Haircut + FREE 10 min Head Massage</p>
-                      <p>₹249</p>
-                    </div>
-                  </div>
-                )}
+                  ))}
+                </div>
               </div>
             ))}
         </div>
