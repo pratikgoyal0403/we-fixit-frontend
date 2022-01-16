@@ -54,33 +54,35 @@ export default function Navbar({ showModal }) {
 				<ul className="flex items-center justify-center">
 					{authDetails?.isLoggedIn && (
 						<>
-							<li
-								className={
-									" mx-3 cursor-pointer px-2 rounded hover:bg-primary hover:text-white " +
-									(scrolledBeyond ? "" : "text-white")
-								}
-								onClick={() => router.push("/")}
-							>
-								Home
-							</li>
-							<li
-								className={
-									"mx-3 cursor-pointer px-2 rounded hover:bg-primary hover:text-white " +
-									(scrolledBeyond ? "" : "text-white")
-								}
-								onClick={() => router.push("/orders")}
-							>
-								My Booking
-							</li>
-							<li
-								className={
-									"mx-3 cursor-pointer px-2 rounded hover:bg-primary hover:text-white " +
-									(scrolledBeyond ? "" : "text-white")
-								}
-								onClick={() => router.push("/cart")}
-							>
-								Cart
-							</li>
+							<div className="hidden md:flex items-center justify-center">
+								<li
+									className={
+										" mx-3 cursor-pointer px-2 rounded hover:bg-primary hover:text-white " +
+										(scrolledBeyond ? "" : "text-white")
+									}
+									onClick={() => router.push("/")}
+								>
+									Home
+								</li>
+								<li
+									className={
+										"mx-3 cursor-pointer px-2 rounded hover:bg-primary hover:text-white " +
+										(scrolledBeyond ? "" : "text-white")
+									}
+									onClick={() => router.push("/orders")}
+								>
+									My Booking
+								</li>
+								<li
+									className={
+										"mx-3 cursor-pointer px-2 rounded hover:bg-primary hover:text-white " +
+										(scrolledBeyond ? "" : "text-white")
+									}
+									onClick={() => router.push("/cart")}
+								>
+									Cart
+								</li>
+							</div>
 							<li
 								className={
 									"text-white mx-3 whitespace-nowrap cursor-pointer inline-flex items-center justify-center px-4 py-1 border border-transparent rounded-md shadow-sm text-base font-sm bg-primary "
