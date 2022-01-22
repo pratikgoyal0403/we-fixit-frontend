@@ -30,7 +30,7 @@ export default function Navbar({ showModal }) {
 	return (
 		<div
 			className={
-				"w-full fixed z-50 md:py-3 flex items-center justify-between px-4 sm:px-6 md:px-16 lg:px-40 " +
+				"w-full fixed z-50 flex items-center justify-between px-4 sm:px-6 md:px-16 lg:px-40 " +
 				(scrolledBeyond ? " bg-white shadow-md" : " bg-transparent")
 			}
 		>
@@ -42,11 +42,11 @@ export default function Navbar({ showModal }) {
 					<img
 						src={
 							scrolledBeyond
-								? "./images/logo-acc.png"
-								: "./images/logo.png"
+								? "/images/logo-acc.png"
+								: "/images/logo.png"
 						}
 						alt="we fixit"
-						style={{ width: "100px", height: "60px" }}
+						style={{ width: "100px" }}
 					/>
 				</a>
 			</nav>
