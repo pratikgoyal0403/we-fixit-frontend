@@ -35,7 +35,7 @@ export default function Layout({ navbar = true, children }) {
 				pauseOnHover={true}
 				theme="colored"
 			/>
-			<div className="min-h-screen grid grid-rows-layout pb-16 md:pb-0">
+			<div className="min-h-screen h-full grid grid-rows-layout pb-16 md:pb-0">
 				{showModal && (
 					<Backdrop hideModal={hideModal}>
 						<Modal>

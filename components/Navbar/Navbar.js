@@ -30,7 +30,7 @@ export default function Navbar({ showModal }) {
 	return (
 		<div
 			className={
-				"w-full fixed z-50 md:py-3 flex items-center justify-between px-4 sm:px-6 md:px-16 lg:px-40 " +
+				"w-full fixed z-50 flex items-center justify-between px-4 sm:px-6 md:px-16 lg:px-40 " +
 				(scrolledBeyond ? " bg-white shadow-md" : " bg-transparent")
 			}
 		>
@@ -42,11 +42,11 @@ export default function Navbar({ showModal }) {
 					<img
 						src={
 							scrolledBeyond
-								? "./images/logo-acc.png"
-								: "./images/logo.png"
+								? "/images/logo-acc.png"
+								: "/images/logo.png"
 						}
 						alt="we fixit"
-						style={{ width: "100px", height: "60px" }}
+						style={{ width: "100px" }}
 					/>
 				</a>
 			</nav>
@@ -54,33 +54,35 @@ export default function Navbar({ showModal }) {
 				<ul className="flex items-center justify-center">
 					{authDetails?.isLoggedIn && (
 						<>
-							<li
-								className={
-									" mx-3 cursor-pointer px-2 rounded hover:bg-primary hover:text-white " +
-									(scrolledBeyond ? "" : "text-white")
-								}
-								onClick={() => router.push("/")}
-							>
-								Home
-							</li>
-							<li
-								className={
-									"mx-3 cursor-pointer px-2 rounded hover:bg-primary hover:text-white " +
-									(scrolledBeyond ? "" : "text-white")
-								}
-								onClick={() => router.push("/orders")}
-							>
-								My Booking
-							</li>
-							<li
-								className={
-									"mx-3 cursor-pointer px-2 rounded hover:bg-primary hover:text-white " +
-									(scrolledBeyond ? "" : "text-white")
-								}
-								onClick={() => router.push("/cart")}
-							>
-								Cart
-							</li>
+							<div className="hidden md:flex items-center justify-center">
+								<li
+									className={
+										" mx-3 cursor-pointer px-2 rounded hover:bg-primary hover:text-white " +
+										(scrolledBeyond ? "" : "text-white")
+									}
+									onClick={() => router.push("/")}
+								>
+									Home
+								</li>
+								<li
+									className={
+										"mx-3 cursor-pointer px-2 rounded hover:bg-primary hover:text-white " +
+										(scrolledBeyond ? "" : "text-white")
+									}
+									onClick={() => router.push("/orders")}
+								>
+									My Booking
+								</li>
+								<li
+									className={
+										"mx-3 cursor-pointer px-2 rounded hover:bg-primary hover:text-white " +
+										(scrolledBeyond ? "" : "text-white")
+									}
+									onClick={() => router.push("/cart")}
+								>
+									Cart
+								</li>
+							</div>
 							<li
 								className={
 									"text-white mx-3 whitespace-nowrap cursor-pointer inline-flex items-center justify-center px-4 py-1 border border-transparent rounded-md shadow-sm text-base font-sm bg-primary "
