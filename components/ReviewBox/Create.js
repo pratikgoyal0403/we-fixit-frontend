@@ -1,17 +1,31 @@
-import {useState} from 'react'
-import { useDispatch } from 'react-redux';
 import ElevatedButton from "../Commons/Elevated_button";
 import Input from "../Commons/Input";
-import {postReview} from '../../store/actions/appActions'
+import { FiStar } from "react-icons/fi";
+import { FaStar } from "react-icons/fa";
+import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { postReview } from "../../store/actions/appActions";
 
-export default function CreateReview({id}) {
-  const [review, setReview ] = useState('')
-  const dispatch = useDispatch()
+const starStyle = { color: "gold", fontSize: "28px", margin: "10px 3px" };
+
+export default function CreateReview({ serviceId }) {
+  const [rating, setRating] = useState(0);
+  const [review, setReview] = useState("");
+  const dispatch = useDispatch();
   const submitHandler = () => {
-    console.log(id)
-  }
+    dispatch(postReview(serviceId, { rating, review }));
+  };
   return (
-    <div>
+    <div className="w-3/4">
+      <div className="flex items-center justify-start">
+        {[1, 2, 3, 4, 5].map((r) =>
+          rating < r ? (
+            <FiStar style={starStyle} onClick={() => setRating(r)} />
+          ) : (
+            <FaStar style={starStyle} onClick={() => setRating(r)} />
+          )
+        )}
+      </div>
       <div>
         <textarea
           placeholder="Review"

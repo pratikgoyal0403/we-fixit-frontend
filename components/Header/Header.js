@@ -7,7 +7,7 @@ export default function Header() {
 			<Container className="flex justify-center">
 				<div className="flex items-start flex-col justify-center">
 					<h1 className="text-lg sm:text-xl md:text-2xl lg:text-3xl mb-3 sm:mb-4 md:mb-5 tracking-widest uppercase text-white">
-						We Fixit
+						WeFixit
 					</h1>
 					<h3 className="text-2xl xs:text-3xl sm:text-4xl lg:text-5xl  mb-2 xs:mb-3 sm:mb-4 md:mb-5 font-semibold font-sans text-white capitalize">
 						Quality home services, on demand
