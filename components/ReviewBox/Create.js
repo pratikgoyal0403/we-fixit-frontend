@@ -1,7 +1,15 @@
+import {useState} from 'react'
+import { useDispatch } from 'react-redux';
 import ElevatedButton from "../Commons/Elevated_button";
 import Input from "../Commons/Input";
+import {postReview} from '../../store/actions/appActions'
 
-export default function CreateReview() {
+export default function CreateReview({id}) {
+  const [review, setReview ] = useState('')
+  const dispatch = useDispatch()
+  const submitHandler = () => {
+    console.log(id)
+  }
   return (
     <div>
       <div>

@@ -3,8 +3,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { fetchAllOrders } from "../../../store/actions/adminAction";
 import { useRouter } from "next/router";
+import AdminProtection from "../../../components/ProtectedRoute/AdminProtection";
 
-export default function Orders() {
+function Orders() {
   const orders = useSelector((state) => state.admin.orders);
   const dispatch = useDispatch();
   const router = useRouter();
@@ -48,3 +49,5 @@ export const getStaticProps = () => {
     },
   };
 };
+
+export default AdminProtection(Orders);

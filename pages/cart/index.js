@@ -8,8 +8,9 @@ import { postMyOrder } from "../../store/actions/orderActions";
 import Input from "../../components/Commons/Input";
 import DropDown from "../../components/Commons/DropDown";
 import { useRouter } from "next/router";
+import ProtectedRoute from "../../components/ProtectedRoute/ProtectedRoute";
 
-export default function Cart() {
+function Cart() {
   const [address, setAddress] = useState("");
   const [remarks, setRemarks] = useState("");
   const [timestamp, setTimestamp] = useState("");
@@ -117,3 +118,5 @@ export default function Cart() {
     </div>
   );
 }
+
+export default ProtectedRoute(Cart);

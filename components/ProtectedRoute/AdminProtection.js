@@ -11,11 +11,11 @@ export default function (Component) {
     useEffect(() => {
       const token = getToken();
       if (!token) {
-        router.replace("/");
+        router.replace("/admin");
       } else {
         ///verify token data here
         const decoded = jwt(token);
-        if (decoded) {
+        if (decoded?.admin) {
           setVerified(true);
         }
       }

@@ -16,8 +16,9 @@ import Backdrop from "../../../components/Commons/Backdrop";
 import Modal from "../../../components/Commons/Modal";
 import ServiceForm from "../../../components/Admin/Commons/Service_Form";
 import ConfirmBox from "../../../components/Admin/Commons/Confirm_box";
+import AdminProtection from "../../../components/ProtectedRoute/AdminProtection";
 
-export default function Services() {
+function Services() {
   const [showModal, setShowModal] = useState(false);
   const [editId, setEditId] = useState(null);
   const [deleteId, setDeleteId] = useState(null);
@@ -108,3 +109,5 @@ export const getStaticProps = () => {
     },
   };
 };
+
+export default AdminProtection(Services);

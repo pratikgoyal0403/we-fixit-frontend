@@ -1,8 +1,9 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { fetchOrderDetail } from "../../../store/actions/adminAction";
+import AdminProtection from "../../../components/ProtectedRoute/AdminProtection";
 
-export default function Order({ id }) {
+function Order({ id }) {
   const orderDetail = useSelector((state) => state.admin.orderDetail);
   const dispatch = useDispatch();
   useEffect(() => {
@@ -38,7 +39,10 @@ export default function Order({ id }) {
         <h1 className="font-bold text-2xl text-center mt-5">Services</h1>
         {orderDetail &&
           orderDetail?.services?.map((service) => (
-            <div key={service._id} className="flex justify-between items-start mt-4 bg-gray-100 px-5 py-1 rounded">
+            <div
+              key={service._id}
+              className="flex justify-between items-start mt-4 bg-gray-100 px-5 py-1 rounded"
+            >
               <p>{service.title}</p>
               <p>₹{service.price}</p>
             </div>
@@ -51,3 +55,5 @@ export default function Order({ id }) {
 export function getServerSideProps(context) {
   return { props: { id: context.params.id } };
 }
+
+export default AdminProtection(Order);

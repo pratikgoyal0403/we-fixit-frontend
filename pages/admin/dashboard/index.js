@@ -6,8 +6,9 @@ import {
   fetchActiveOrders,
   changeOrderStatus,
 } from "../../../store/actions/adminAction";
+import AdminProtection from "../../../components/ProtectedRoute/AdminProtection";
 
-export default function Dashboard() {
+function Dashboard() {
   const activeOrders = useSelector((state) => state.admin.activeOrder);
   const dispatch = useDispatch();
   useEffect(() => {
@@ -86,3 +87,5 @@ export const getStaticProps = () => {
     },
   };
 };
+
+export default AdminProtection(Dashboard);

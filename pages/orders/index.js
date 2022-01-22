@@ -3,8 +3,9 @@ import SectionHeading from "../../components/Commons/Section_heading";
 import { getMyOrders } from "../../store/actions/orderActions";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import ProtectedRoute from "../../components/ProtectedRoute/ProtectedRoute";
 
-export default function Orders() {
+function Orders() {
   const dispatch = useDispatch();
   const orders = useSelector((state) => state.order.orders);
   console.log(orders);
@@ -45,3 +46,5 @@ export default function Orders() {
     </div>
   );
 }
+
+export default ProtectedRoute(Orders);
