@@ -18,7 +18,7 @@ export default function ProductDetailsPage({ id }) {
 		dispatch(saveToCart({ serviceId: id }));
 	};
 	return (
-		<div className="pt-24">
+		<div className="pt-24 md:pb-16">
 			{/* <SectionHeading title="XYZ Product"/> */}
 			<Container>
 				<div className="flex justify-center">
