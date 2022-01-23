@@ -8,7 +8,7 @@ export default function ServicesCard({ _id: id, title, showMore = false }) {
 	const router = useRouter();
 	return (
 		<div
-			className="shadow-md border px-4 py-6 lg:py-8 xl:py-10 md:w-40 lg:w-48 xl:w-56 flex items-center flex-col rounded-md cursor-pointer"
+			className="border px-6 py-6 lg:py-8 xl:py-10 min-w-36 md:w-40 lg:w-48 xl:w-56 flex items-center flex-col rounded-md cursor-pointer"
 			onClick={() => router.replace("/category/" + id)}
 		>
 			{!showMore && (
@@ -17,7 +17,7 @@ export default function ServicesCard({ _id: id, title, showMore = false }) {
 						className="text-3xl md:text-4xl lg:text-5xl xl:text-6xl"
 						style={{ marginBottom: "15px" }}
 					/>
-					<h1 className="text-xs whitespace-nowrap xs:text-sm lg:text-regular text-center">
+					<h1 className="text-xs xs:text-sm lg:text-regular text-center">
 						{title}
 					</h1>
 				</>
