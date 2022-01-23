@@ -52,9 +52,9 @@ export default function Home() {
 				categories={allCategories}
 				filteredResult={filteredCategories}
 			/>
-			{/* <Features />
+			<Features />
 			<About />
-			<ContactUs /> */}
+			<ContactUs />
 		</>
 	);
 }
