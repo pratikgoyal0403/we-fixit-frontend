@@ -6,10 +6,13 @@ import { fetchServiceDetails } from "../../store/actions/appActions";
 import { saveToCart } from "../../store/actions/cartActions";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
+import { useRouter } from "next/router";
+import reviewParser from "../../utils/review-parser";
 
 export default function ProductDetailsPage({ id }) {
   const service = useSelector((state) => state.app.serviceDetails);
   const dispatch = useDispatch();
+  const router = useRouter();
   useEffect(() => {
     dispatch(fetchServiceDetails(id));
   }, []);
@@ -22,13 +25,22 @@ export default function ProductDetailsPage({ id }) {
       <div className="container flex justify-center">
         <div className="w-10/12 flex items-stretch justify-start">
           <div className="flex-1 rounded-xl overflow-hidden">
-            <img src="/images/hero-2.webp" alt="service image" />
+            <img
+              src={
+                service?.image
+                  ? "http://localhost:5001/" + service.image
+                  : "/images/hero-2.webp"
+              }
+              alt="service image"
+            />
           </div>
           <div className="flex-1 px-6">
             <h1 className="text-4xl text-gray-700 font-semibold mb-4">
               {service?.title}
             </h1>
-            <p className="mb-4 text-yellow-500">4.27 stars</p>
+            <p className="mb-4 text-yellow-500">
+              {service?.reviews ? reviewParser(service?.reviews) + " Star": ""}
+            </p>
 
             <ul className="my-5 list-disc px-5">
               {service &&
