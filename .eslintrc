@@ -1,13 +1,17 @@
 {
-  // ...
-  "parserOptions": {
-    "ecmaVersion": 7,
-    "sourceType": "module"
-  },
-  "extends": ["next", "next/core-web-vitals"],
-  "rules": {
-    // Other rules
-    "@next/next/no-img-element": "off",
-    "react/display-name": "off"
-  }
+	// ...
+	"parserOptions": {
+		"ecmaVersion": 7,
+		"sourceType": "module"
+	},
+	"extends": ["next", "next/core-web-vitals"],
+	"rules": {
+		// Other rules
+		"@next/next/no-img-element": "off",
+		"@next/next/link-passhref": "off",
+		"react/display-name": "off",
+		"react-hooks/exhaustive-deps": "off",
+		"import/no-anonymous-default-export": "off",
+		"react/no-unescaped-entities": "off"
+	}
 }

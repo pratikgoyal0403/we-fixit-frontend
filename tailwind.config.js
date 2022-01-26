@@ -10,6 +10,12 @@ module.exports = {
 			...defaultTheme.screens,
 		},
 		extend: {
+			spacing: {
+				"screen-90": "90vw",
+			},
+			minWidth: {
+				36: "9rem",
+			},
 			colors: {
 				primary: "#38CC77",
 				secondary: "#F9F8FD",
