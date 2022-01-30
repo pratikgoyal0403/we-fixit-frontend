@@ -17,6 +17,7 @@ export const UPDATE_USER_PROFILE = "UPDATE_USER_PROFILE";
 /////////////////////// AUTH TYPES
 export const SAVE_USER_AUTH_HASH = "SAVE_USER_AUTH_HASH";
 export const LOGIN_USER = "LOGIN_USER";
+export const LOGOUT = "LOGOUT";
 
 /////////////////////// ADMIN TYPES
 export const FETCH_ACTIVE_ORDERS = "FETCH_ACTIVE_ORDERS";

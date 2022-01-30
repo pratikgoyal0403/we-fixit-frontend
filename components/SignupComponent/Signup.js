@@ -6,14 +6,14 @@ import ElevatedButton from "../Commons/Elevated_button";
 import Input from "../Commons/Input";
 import LinkButton from "../Commons/Link_button";
 
-export default function Signup({ hideModal, changeComponent }) {
+export default function Signup({ hideModal, changeComponent, switchToSignup }) {
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
 	const [phone, setPhone] = useState("");
 	const dispatch = useDispatch();
 	const submitHandler = () => {
 		// if (!email || !password) return alert("please enter all details");
-		dispatch(signup({ email, password, phone }));
+		dispatch(signup({ email, password, phone }, switchToSignup));
 	};
 	return (
 		<div>

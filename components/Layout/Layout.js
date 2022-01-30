@@ -21,6 +21,9 @@ export default function Layout({ navbar = true, children }) {
 	const changeModalComponent = (component) => {
 		setModalComponent(component);
 	};
+	const switchToSignup = () => {
+		setModalComponent('login')
+	}
 	return (
 		<>
 			<ToastContainer
@@ -49,6 +52,7 @@ export default function Layout({ navbar = true, children }) {
 								<Signup
 									hideModal={hideModal}
 									changeComponent={changeModalComponent}
+									switchToSignup={switchToSignup}
 								/>
 							)}
 						</Modal>

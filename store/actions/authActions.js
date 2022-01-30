@@ -85,13 +85,20 @@ export const adminLogin = (payload, router) => async (dispatch) => {
   }
 };
 
-export const signup = (payload) => async (dispatch) => {
+export const signup = (payload, switchToSignup) => async (dispatch) => {
   try {
     const response = await Api.post("/user/signup", payload);
     const result = await response.data;
-    console.log(result);
     toast.success("signup successful Please login");
+    switchToSignup();
   } catch (err) {
     toast.error(err.response.data.message);
   }
 };
+
+
+export const logoutHandler = () => {
+  return {
+    type: types.LOGOUT
+  }
+}

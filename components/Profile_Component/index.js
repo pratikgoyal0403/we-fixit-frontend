@@ -13,6 +13,7 @@ export default function ProfileComponent({ userInfo }) {
     email: userInfo?.email || "",
     address: userInfo?.address || "",
     gender: userInfo?.gender || "",
+    phone: userInfo?.phone || "",
   });
   const dispatch = useDispatch();
 
@@ -57,7 +58,18 @@ export default function ProfileComponent({ userInfo }) {
             <Input
               placeholder="Email"
               name="email"
+              type="email"
               value={values.email}
+              onChange={changeDetector}
+            />
+          </div>
+          <div className="mb-4">
+            <p className="capitalize font-semibold mb-1">Phone: </p>
+            <Input
+              placeholder="Phone"
+              name="phone"
+              type="number"
+              value={values.phone}
               onChange={changeDetector}
             />
           </div>
