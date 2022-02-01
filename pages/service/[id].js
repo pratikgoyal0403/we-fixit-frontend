@@ -8,6 +8,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import Container from "../../components/Commons/Container";
 import reviewParser from "../../utils/review-parser";
+import { FaStar } from "react-icons/fa";
+
+const star = { color: "#38CC77", fontSize: "14px", margin: "10px 5px" };
 
 export default function ProductDetailsPage({ id }) {
   const service = useSelector((state) => state.app.serviceDetails);
@@ -35,10 +38,9 @@ export default function ProductDetailsPage({ id }) {
               <h1 className="text-2xl md:text-3xl xl:text-4xl text-gray-700 font-semibold mb-4">
                 {service?.title}
               </h1>
-              <p className="mb-4 text-yellow-500">
-                {service?.reviews
-                  ? reviewParser(service?.reviews) + " Star"
-                  : ""}
+              <p className="mb-4 text-primary flex items-center justify-start">
+                {service?.reviews ? reviewParser(service?.reviews) : "0"}
+                <FaStar style={star} />
               </p>
 
               <ul className="my-5 list-disc px-5">

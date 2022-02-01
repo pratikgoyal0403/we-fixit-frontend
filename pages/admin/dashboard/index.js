@@ -7,6 +7,7 @@ import {
   changeOrderStatus,
 } from "../../../store/actions/adminAction";
 import AdminProtection from "../../../components/ProtectedRoute/AdminProtection";
+import ActiveOrder from "../../../components/ActiveOrder/ActiveOrder";
 
 function Dashboard() {
   const activeOrders = useSelector((state) => state.admin.activeOrder);
@@ -46,33 +47,7 @@ function Dashboard() {
           </div>
           {activeOrders &&
             activeOrders.map((order) => (
-              <div className="shadow-sm" key={order._id}>
-                <div className="grid grid-cols-5 border-b text-center p-4 rounded mt-5 ">
-                  <p className="cursor-pointer">jkl2343j2k4lj23kl4j234j</p>
-                  <p>fictional steet, fictional city</p>
-                  <p>₹249</p>
-                  <p className="font-semibold">
-                    <DropDown
-                      options={["Placed", "Confirmed", "Completed"]}
-                      selectedValue={order.status}
-                      change={(value) => statusChangeHandler(order._id, value)}
-                    />
-                  </p>
-                  <p>2:30pm</p>
-                </div>
-                <div className="py-4">
-                  {order.services.map((service) => (
-                    <div
-                      className="w-1/2 flex items-center justify-between pl-20 py-2"
-                      key={service._id}
-                    >
-                      {console.log(service)}
-                      <p>{service.title}</p>
-                      <p>₹ {service.price}</p>
-                    </div>
-                  ))}
-                </div>
-              </div>
+              <ActiveOrder key={order._id} order={order} />
             ))}
         </div>
       </div>

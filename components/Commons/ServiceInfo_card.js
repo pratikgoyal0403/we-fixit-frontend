@@ -4,6 +4,9 @@ import { useRouter } from "next/router";
 import { useDispatch } from "react-redux";
 import { saveToCart } from "../../store/actions/cartActions";
 import reviewParser from "../../utils/review-parser";
+import { FaStar } from "react-icons/fa";
+
+const star = { color: "#38CC77", fontSize: "14px", margin: "10px 3px" };
 
 export default function ServiceInfoCard({
   _id: id,
@@ -40,9 +43,9 @@ export default function ServiceInfoCard({
         </div>
         <div className="px-4 mt-4 lg:mt-0">
           <h1 className="text-gray-700 font-semibold">{title}</h1>
-          <p className="text-green-600 text-sm font-semibold py-1">
+          <p className="text-green-600 text-sm font-semibold py-1 flex items-center justify-start">
             {reviewParser(reviews)}
-            {" Star"}
+            <FaStar style={star} />
           </p>
           <p className="font-semibold">₹{price}</p>
           {/* <p className="text-sm text-gray-500 font-semibold">40 min</p> */}

@@ -4,10 +4,10 @@ import ElevatedButton from "../Commons/Elevated_button";
 import { useSelector, useDispatch } from "react-redux";
 import { useRouter } from "next/router";
 import { logoutHandler as logout } from "../../store/actions/authActions";
+import Badge from "../badge/badge";
 
 export default function Navbar({ showModal }) {
   const [scrolledBeyond, setScrolledBeyond] = useState(false);
-  console.log(scrolledBeyond);
   const authDetails = useSelector((state) => state.auth);
   const router = useRouter();
   const dispatch = useDispatch();
@@ -30,7 +30,6 @@ export default function Navbar({ showModal }) {
     }
   }, [router.asPath]);
   const logoutHandler = () => {
-    console.log("inside logout handler");
     dispatch(logout());
   };
   return (
@@ -49,6 +48,7 @@ export default function Navbar({ showModal }) {
             src={scrolledBeyond ? "/images/logo-acc.png" : "/images/logo.png"}
             alt="we fixit"
             style={{ width: "100px" }}
+            onClick={() => router.push("/")}
           />
         </a>
       </nav>
@@ -91,7 +91,10 @@ export default function Navbar({ showModal }) {
                   }
                   onClick={() => router.push("/cart")}
                 >
-                  Cart
+                  <div className="relative">
+                    {/* <Badge /> */}
+                    Cart
+                  </div>
                 </li>
               </div>
               <li

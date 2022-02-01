@@ -26,7 +26,7 @@ function Orders() {
           orders.map((o) => (
             <div
               className={
-                "grid grid-cols-5 text-center shadow-sm p-4 rounded mt-5 "
+                "grid grid-cols-5 text-center shadow-sm p-4 rounded mt-5 hover:bg-primary hover:text-white"
               }
               key={o._id}
               onClick={() => router.push("/admin/order/" + o._id)}
