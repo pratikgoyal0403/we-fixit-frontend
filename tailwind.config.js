@@ -14,7 +14,7 @@ module.exports = {
 				"screen-90": "90vw",
 			},
 			minWidth: {
-				36: "9rem",
+				36: "8rem",
 			},
 			colors: {
 				primary: "#38CC77",
