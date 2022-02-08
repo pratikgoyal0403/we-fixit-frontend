@@ -47,7 +47,11 @@ function Dashboard() {
           </div>
           {activeOrders &&
             activeOrders.map((order) => (
-              <ActiveOrder key={order._id} order={order} />
+              <ActiveOrder
+                key={order._id}
+                order={order}
+                statusChangeHandler={statusChangeHandler}
+              />
             ))}
         </div>
       </div>

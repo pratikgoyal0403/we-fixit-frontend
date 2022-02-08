@@ -4,6 +4,7 @@ export default function LinkButton({
   Icon2,
   className,
   click = () => {},
+  style = {},
 }) {
   return (
     <div
@@ -12,6 +13,7 @@ export default function LinkButton({
         className
       }
       onClick={click}
+      style={style}
     >
       {Icon1 || ""}
       <p className="mx-1 ">{title}</p>

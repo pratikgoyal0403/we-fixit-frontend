@@ -20,9 +20,9 @@ export default function CreateReview({ serviceId }) {
 			<div className="flex items-center justify-start">
 				{[1, 2, 3, 4, 5].map((r) =>
 					rating < r ? (
-						<FiStar style={starStyle} onClick={() => setRating(r)} />
+						<FiStar key={r} style={starStyle} onClick={() => setRating(r)} />
 					) : (
-						<FaStar style={starStyle} onClick={() => setRating(r)} />
+						<FaStar key={r} style={starStyle} onClick={() => setRating(r)} />
 					)
 				)}
 			</div>

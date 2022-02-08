@@ -261,3 +261,102 @@ export const deleteService = (id) => async (dispatch) => {
     console.log(err);
   }
 };
+
+//////////////////////////ADMIN REVIEW
+
+const saveAdminReview = (payload) => {
+  return {
+    type: types.SAVE_ADMIN_REVIEW,
+    payload,
+  };
+};
+
+export const fetchAdminReviews = () => async (dispatch) => {
+  try {
+    const token = getToken();
+    const response = await Api.get("/admin/review", {
+      headers: {
+        "x-access-token": token,
+      },
+    });
+    const result = await response.data;
+    console.log(result);
+    dispatch(saveAdminReview(result.response));
+  } catch (err) {
+    toast.error("something went wrong");
+    console.log(err);
+  }
+};
+
+const saveNewAdminReview = (payload) => {
+  return {
+    type: types.SAVE_NEW_ADMIN_REVIEW,
+    payload,
+  };
+};
+
+export const AdminReview = (payload) => async (dispatch) => {
+  try {
+    const token = getToken();
+    const response = await Api.post("/admin/review", payload, {
+      headers: {
+        "x-access-token": token,
+      },
+    });
+    const result = await response.data;
+    console.log(result);
+    dispatch(saveNewAdminReview(result.response));
+    toast.success("Review saved successfully");
+  } catch (err) {
+    toast.error("something went wrong");
+    console.log(err);
+  }
+};
+
+const saveEditedReview = (payload) => {
+  return {
+    type: types.SAVE_ADMIN_EDITED_REVIEW,
+    payload,
+  };
+};
+
+export const EditReview = (id, payload) => async (dispatch) => {
+  try {
+    const token = getToken();
+    const response = await Api.put("/admin/review/" + id, payload, {
+      headers: {
+        "x-access-token": token,
+      },
+    });
+    const result = await response.data;
+    dispatch(saveEditedReview(result.response));
+    toast.success("Review updated successfully");
+  } catch (err) {
+    toast.error("something went wrong");
+    console.log(err);
+  }
+};
+
+const saveDeletedReview = (payload) => {
+  return {
+    type: types.SAVE_DELETED_REVIEW,
+    payload,
+  };
+};
+
+export const DeleteReview = (id) => async (dispatch) => {
+  try {
+    const token = getToken();
+    const response = await Api.delete("/admin/review/" + id, {
+      headers: {
+        "x-access-token": token,
+      },
+    });
+    const result = await response.data;
+    dispatch(saveDeletedReview(result.response));
+    toast.success("Review delete successfully");
+  } catch (err) {
+    toast.error("something went wrong");
+    console.log(err);
+  }
+};

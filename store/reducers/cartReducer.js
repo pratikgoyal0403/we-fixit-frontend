@@ -16,6 +16,11 @@ export default function CartReducer(state = initialState, action) {
         ...state,
         cart: null,
       };
+    case types.ADD_ITEM_TO_CART:
+      return {
+        ...state,
+        cart: { ...action.payload },
+      };
     default:
       return {
         ...state,

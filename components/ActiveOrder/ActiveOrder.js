@@ -1,18 +1,18 @@
 import { useState, useEffect, useRef } from "react";
 import DropDown from "../Commons/DropDown";
 
-export default function ({ order }) {
+export default function ({ order, statusChangeHandler }) {
   const [showFullDetails, setShowFullDetails] = useState(false);
   const containerRef = useRef(null);
-//   const clickTracker = (event) => {
-//     if (containerRef.current || !containerRef.current.contains(event.target)) {
-//       return setShowFullDetails(false);
-//     }
-//   };
-//   useEffect(() => {
-//     document.addEventListener("click", clickTracker);
-//     return () => document.removeEventListener("click", clickTracker);
-//   }, []);
+  //   const clickTracker = (event) => {
+  //     if (containerRef.current || !containerRef.current.contains(event.target)) {
+  //       return setShowFullDetails(false);
+  //     }
+  //   };
+  //   useEffect(() => {
+  //     document.addEventListener("click", clickTracker);
+  //     return () => document.removeEventListener("click", clickTracker);
+  //   }, []);
   const toggleDetail = () => {
     setShowFullDetails((prevValue) => !prevValue);
   };

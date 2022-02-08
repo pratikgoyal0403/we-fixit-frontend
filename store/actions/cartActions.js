@@ -31,6 +31,12 @@ export const getCart = () => async (dispatch) => {
   }
 };
 
+const addItemToCart = (payload) => {
+  return {
+    type: types.ADD_ITEM_TO_CART,
+    payload,
+  };
+};
 export const saveToCart = (payload) => async (dispatch) => {
   try {
     const token = getToken();
@@ -39,14 +45,15 @@ export const saveToCart = (payload) => async (dispatch) => {
         "x-access-token": token,
       },
     });
-    if (response.status >= 400) {
-      // error handling;
-      console.log("inside error handling");
-      console.log(response);
-      return;
-    }
+    // if (response.status >= 400) {
+    //   // error handling;
+    //   console.log("inside error handling");
+    //   console.log(response);
+    //   return;
+    // }
     const result = await response.data;
     console.log(result);
+    dispatch(addItemToCart(result.response));
     toast.success("service added to cart");
   } catch (err) {
     console.log(err);

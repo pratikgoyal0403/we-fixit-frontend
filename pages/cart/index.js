@@ -11,7 +11,6 @@ import { useRouter } from "next/router";
 import ProtectedRoute from "../../components/ProtectedRoute/ProtectedRoute";
 import Container from "../../components/Commons/Container";
 
-
 function Cart() {
   const [address, setAddress] = useState("");
   const [remarks, setRemarks] = useState("");
@@ -26,7 +25,6 @@ function Cart() {
   }, []);
 
   const checkDisabled = () => {
-    console.log(cartDetails?.services);
     if (
       !address ||
       !timestamp ||
@@ -58,7 +56,16 @@ function Cart() {
         <div className="mt-6 sm:mt-8 lg:mt-10 grid grid-cols-10">
           <div className="col-span-10 lg:col-span-5 xl:col-span-6 order-2 lg:order-1 mt-10 lg:mt-0">
             {cartDetails &&
+              !!cartDetails?.services.length &&
               cartDetails.services.map((s) => <Cart_Card key={s._id} {...s} />)}
+            {!cartDetails?.services?.length && (
+              <div className="flex items-center justify-center flex-col">
+                <h1 className="text-xl font-semibold mb-2">Cart is Empty</h1>
+                <p className="text-md text-gray-600">
+                  Start Adding Items to the cart
+                </p>
+              </div>
+            )}
           </div>
           <div className="col-span-10 lg:col-span-5 xl:col-span-4 lg:pl-6 w-full order-1 lg:order-2">
             <div className="px-6 pt-4 pb-1 rounded-lg shadow-lg border">

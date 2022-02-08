@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
+
 export default function SideNavbar() {
   const [currentPath, setCurrentPath] = useState("/admin/dashboard");
   const checkIfActive = (link) => {
@@ -54,6 +55,16 @@ export default function SideNavbar() {
             }
           >
             Orders
+          </li>
+        </Link>
+        <Link href="/admin/reviews">
+          <li
+            className={
+              "hover:bg-justPrimary pl-10 font-semibold text-lg py-3 rounded-lg mt-1 cursor-pointer " +
+              (checkIfActive("/admin/reviews") ? "bg-primary text-white" : "")
+            }
+          >
+            Reviews
           </li>
         </Link>
       </ul>

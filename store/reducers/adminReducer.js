@@ -5,6 +5,7 @@ const initialState = {
   categories: [],
   orders: [],
   orderDetail: {},
+  reviews: [],
 };
 
 export default function adminReducer(state = initialState, action) {
@@ -59,6 +60,31 @@ export default function adminReducer(state = initialState, action) {
       return {
         ...state,
         orderDetail: { ...action.payload },
+      };
+    case types.SAVE_ADMIN_REVIEW:
+      return {
+        ...state,
+        reviews: [...action.payload],
+      };
+    case types.SAVE_NEW_ADMIN_REVIEW:
+      return {
+        ...state,
+        reviews: [...state.reviews, { ...action.payload }],
+      };
+    case types.SAVE_ADMIN_EDITED_REVIEW:
+      let reviews = [...state.reviews];
+      let i = reviews.findIndex((val) => val._id === action.payload._id);
+      reviews.splice(i, 1, action.payload);
+      return {
+        ...state,
+        reviews: [...reviews],
+      };
+    case types.SAVE_DELETED_REVIEW:
+      return {
+        ...state,
+        reviews: state.reviews.filter(
+          (review) => review._id !== action.payload
+        ),
       };
     default:
       return {

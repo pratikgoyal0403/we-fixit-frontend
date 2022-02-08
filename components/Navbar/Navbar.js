@@ -9,6 +9,7 @@ import Badge from "../badge/badge";
 export default function Navbar({ showModal }) {
   const [scrolledBeyond, setScrolledBeyond] = useState(false);
   const authDetails = useSelector((state) => state.auth);
+  const cart = useSelector((state) => state.cart?.cart);
   const router = useRouter();
   const dispatch = useDispatch();
 
@@ -29,6 +30,7 @@ export default function Navbar({ showModal }) {
       return setScrolledBeyond(false);
     }
   }, [router.asPath]);
+  useEffect(() => {}, [cart?.services]);
   const logoutHandler = () => {
     dispatch(logout());
   };
@@ -92,7 +94,9 @@ export default function Navbar({ showModal }) {
                   onClick={() => router.push("/cart")}
                 >
                   <div className="relative">
-                    {/* <Badge /> */}
+                    {!!cart?.services?.length && (
+                      <Badge count={cart?.services?.length} />
+                    )}
                     Cart
                   </div>
                 </li>

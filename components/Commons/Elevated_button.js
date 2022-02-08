@@ -13,7 +13,7 @@ export default function ElevatedButton({
 				className +
 				(disabled ? " opacity-50 cursor-not-allowed" : " ")
 			}
-			onClick={click}
+			onClick={click}	
 		>
 			{!!Icon1 && Icon1}
 			<p className="text-sm md:text-regular font-semibold">{title}</p>
