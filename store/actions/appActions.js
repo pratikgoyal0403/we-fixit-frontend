@@ -71,6 +71,23 @@ export const fetchServiceDetails = (serviceId) => async (dispatch) => {
   }
 };
 
+const saveAppReviews = (payload) => {
+  return {
+    type: types.SAVE_FETCHED_APP_REVIEWS,
+    payload,
+  };
+};
+
+export const fetchReviews = () => async (dispatch) => {
+  try {
+    const response = await Api.get("/app-reviews");
+    const result = await response.data;
+    dispatch(saveAppReviews(result.response));
+  } catch (err) {
+    console.log(err);
+  }
+};
+
 export const contactUs = (payload) => async (dispatch) => {
   try {
     const response = await Api.post("/contact-us");

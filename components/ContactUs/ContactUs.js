@@ -66,7 +66,7 @@ export default function ContactUs() {
 							<textarea
 								placeholder="Message"
 								rows="5"
-								className="w-full my-2 bg-gray-200 py-2 px-4 rounded focus:outline-none"
+								className="w-full my-2 border py-2 px-4 rounded focus:outline-none"
 								value={message}
 								onChange={(e) => setMessage(e.target.value)}
 							></textarea>

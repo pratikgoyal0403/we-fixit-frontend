@@ -4,6 +4,7 @@ const initialState = {
   allCategories: [],
   services: null,
   serviceDetails: null,
+  reviews: [],
 };
 
 export default function AppReducer(state = initialState, action) {
@@ -22,6 +23,11 @@ export default function AppReducer(state = initialState, action) {
       return {
         ...state,
         serviceDetails: { ...action.payload },
+      };
+    case types.SAVE_FETCHED_APP_REVIEWS:
+      return {
+        ...state,
+        reviews: [...action.payload],
       };
     default:
       return {
